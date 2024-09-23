@@ -1,1 +1,1 @@
-# Programmēšanas-projekts
+# Programmēšanas projekts
