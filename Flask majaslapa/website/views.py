@@ -1,39 +1,44 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Note
+from .models import Lesson
 from . import db
 import json
 
 views = Blueprint('views', __name__)
 
-@views.route('/welcome')
-def welcome():
-    return render_template("index.html")
-    
+
 @views.route('/', methods =['GET','POST'])
 @login_required
 def home():
     if request.method == 'POST':
-        note = request.form.get('note')
+        lesson = request.form.get('lesson')
 
-        if len(note) < 1:
+        if len(lesson) < 1:
             flash('Note is too short!', category='error')
         else:
-            new_note = Note(data=note, user_id=current_user.id)
-            db.session.add(new_note)
+            new_lesson = Lesson(data=lesson, user_id=current_user.id)
+            db.session.add(new_lesson)
             db.session.commit()
-            flash('Note added!', category='success')
+            flash('Lesson added!', category='success')
 
     return render_template("home.html", user=current_user)
 
-@views.route('/delete-note', methods=['POST'])
-def delete_note():  
-    note = json.loads(request.data) # this function expects a JSON from the INDEX.js file 
-    noteId = note['noteId']
-    note = Note.query.get(noteId)
-    if note:
-        if note.user_id == current_user.id:
-            db.session.delete(note)
+@views.route('/create', methods=['GET','POST'])
+def create_lesson():
+    if request.method == 'POST':
+        time = request.form.get('time')
+        print(var.type(time))
+
+    return render_template("create.html", user=current_user)
+
+@views.route('/delete-lesson', methods=['POST'])
+def delete_lesson():
+    lesson = json.loads(request.data) # this function expects a JSON from the INDEX.js file 
+    lessonId = lesson['lessonId'] 
+    lesson = Lesson.query.get(lessonId)
+    if lesson:
+        if lesson.user_id == current_user.id:
+            db.session.delete(lesson)
             db.session.commit()
 
-    return jsonify({})
+    return jsonify({})  

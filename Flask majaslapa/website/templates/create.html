@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% block title %}Create lesson{% endblock %}
+{% block content %}
+<form method="POST">
+    <h3 align="center">Create lesson</h3>
+    <div class="form-group">
+        <div class="input-group"></div>
+        <label for="time">Lesson time</label>
+        <input
+          type="time"
+          class="form-control"
+          id="time"
+          name="time"
+          placeholder="Enter time"
+        />
+        <label for="date">Lesson date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="date"
+          name="date"
+          placeholder="Enter date"
+        />
+    </div>
+    <div class="form-group">
+      <label for="subject">Subject</label>
+      <input type="subject"
+        class="form-control"
+        id="subject"
+        name="subject"
+        placeholder="Enter subject"
+      />
+    </div>
+    <div class="form-group">
+        <label for="pupil">Pupil</label>
+        <input
+          type="pupil"
+          class="form-control"
+          id="pupil"
+          name="pupil"
+          placeholder="Enter pupil"
+        />
+      </div>
+    <div class="form-group">
+        <label for"place">Place</label>
+        <input
+          type="place"
+          class="form-control"
+          id="place"
+          name="place"
+          placeholder="Enter place"
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Finish</button>
+  </form>
+{% endblock %}

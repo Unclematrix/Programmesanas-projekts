@@ -1,21 +1,20 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
-<h1 align="center">Notes</h1>
-<ul class="list-group list-group-flush" id="notes">
-    {% for note in user.notes %}
-    <li class="list-group-item">
-        {{ note.data }}
-        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+<h1 align="center">Lessons</h1>
+<ul class="list-group list-group-flush" id="Lessons">
+    {% for lesson in user.lessons %}
+    <li class="list-group-item">{{ lesson.data }}
+        <button type="button" class="close" onClick="deleteLesson({{ lesson.id }})">
             <span aria-hidden="true">&times;</span>
           </button>
     </li>
     {% endfor %}
 </ul>
 <form method="POST">
-    <textarea name="note" id="note" class="form-control"></textarea>
+    <textarea name="lesson" id="lesson" class="form-control"></textarea>
     <br/>
     <div align="center">
-        <button type="submit" class="btn btn-primary">Add note</button>
+        <button href="/create-lesson" class="btn btn-primary">Create Lesson</button>
     </div>
 </form>
 {% endblock %}
