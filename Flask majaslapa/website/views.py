@@ -9,8 +9,8 @@ views = Blueprint('views', __name__)
 @views.route('/welcome')
 def welcome():
     return render_template("index.html")
-    
-@views.route('/', methods =['GET','POST'])
+
+@views.route('/home', methods =['GET','POST'])
 @login_required
 def home():
     if request.method == 'POST':
