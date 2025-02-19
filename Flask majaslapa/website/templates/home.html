@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
-<h1 align="center">Notes</h1>
+<h1 align="center" style="margin-top: 100px;">Notes</h1>
 <ul class="list-group list-group-flush" id="notes">
     {% for note in user.notes %}
     <li class="list-group-item">
@@ -15,7 +15,7 @@
     <textarea name="note" id="note" class="form-control"></textarea>
     <br/>
     <div align="center">
-        <button type="submit" class="btn btn-primary">Add note</button>
+        <button type="submit" class="w3-button w3-red w3-padding-large w3-large w3-margin-top">Add note</button>
     </div>
 </form>
 {% endblock %}
