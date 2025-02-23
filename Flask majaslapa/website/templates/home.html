@@ -1,24 +1,27 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
 %}
-<h1 align="center" style="margin-top: 100px;">Notes</h1>
-<ul class="list-group list-group-flush" id="notes">
-    {% for note in user.notes %}
-    <li class="list-group-item">
-        {{ note.data }}
-        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-            <span aria-hidden="true">&times;</span>
-          </button>
-    </li>
-    {% endfor %}
-</ul>
-<form method="POST">
-    <textarea name="lesson" id="lesson" class="form-control"></textarea>
-    <br/>
-    <div align="center">
-        <button type="submit" class="w3-button w3-red w3-padding-large w3-large w3-margin-top">Add note</button>
-    </div>
-</form>
+<h1 align="center" style="margin-top: 100px;">Lessons</h1>
+<table class="table">
+    <thead>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Subject</th>
+        <th>Pupil</th>
+        <th>Place</th>
+    </thead>
+    <tbody>
+        {% for lesson in lessons %}
+        <tr>
+            <td>{{ lesson.date }}</td>
+            <td>{{ lesson.time }}</td>
+            <td>{{ lesson.subject }}</td>
+            <td>{{ lesson.pupil }}</td>
+            <td>{{ lesson.place }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 <div align="center">
-    <a class="btn btn-primary" id="create" href="/create">Create lesson</a>   
+    <a class="w3-button w3-red w3-padding-large w3-large w3-margin-top" id="create" href="/create">Create lesson</a>   
 </div>
 {% endblock %}

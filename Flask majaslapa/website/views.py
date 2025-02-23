@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
 from .models import Lesson
 from . import db
@@ -9,24 +9,27 @@ views = Blueprint('views', __name__)
 @views.route('/home', methods =['GET','POST'])
 @login_required
 def home():
-    if request.method == 'POST':
-        lesson = request.form.get('lesson')
-
-        if len(lesson) < 1:
-            flash('Note is too short!', category='error')
-        else:
-            new_lesson = Lesson(data=lesson, user_id=current_user.id)
-            db.session.add(new_lesson)
-            db.session.commit()
-            flash('Lesson added!', category='success')
-
     return render_template("home.html", user=current_user)
 
 @views.route('/create', methods=['GET','POST'])
+@login_required
 def create_lesson():
     if request.method == 'POST':
         time = request.form.get('time')
-        print(var.type(time))
+        date = request.form.get('date')
+        subject = request.form.get('subject')
+        pupil = request.form.get('pupil')
+        place = request.form.get('place')
+        if len(time) < 1:
+            flash('You have to choose a time!', category='error')
+        elif len(date) < 1:
+            flash('You have to choose a date!', category='error')
+        else:
+            new_lesson = Lesson(time=time, date=date, subject=subject, pupil=pupil, place=place, user_id=current_user.id)
+            db.session.add(new_lesson)
+            db.session.commit()
+            flash('Lesson added!', category='success')
+            return redirect(url_for('views.home'))
 
     return render_template("create.html", user=current_user)
 
