@@ -8,15 +8,21 @@
         <th>Subject</th>
         <th>Pupil</th>
         <th>Place</th>
+        <th></th>
     </thead>
     <tbody>
-        {% for lesson in lessons %}
+        {% for lesson in user.lessons %}
         <tr>
             <td>{{ lesson.date }}</td>
             <td>{{ lesson.time }}</td>
             <td>{{ lesson.subject }}</td>
             <td>{{ lesson.pupil }}</td>
             <td>{{ lesson.place }}</td>
+            <td>
+                <button type="button", class="close", onClick="deleteLesson({{ lesson.id }})">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </td>  
         </tr>
         {% endfor %}
     </tbody>
