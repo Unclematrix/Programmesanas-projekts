@@ -35,7 +35,7 @@ def create_lesson():
 
 @views.route('/delete-lesson', methods=['POST'])
 def delete_lesson():
-    lesson = json.loads(request.data) # this function expects a JSON from the INDEX.js file 
+    lesson = json.loads(request.data)
     lessonId = lesson['lessonId'] 
     lesson = Lesson.query.get(lessonId)
     if lesson:

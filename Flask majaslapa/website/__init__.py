@@ -3,13 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
 
-db= SQLAlchemy()
+db = SQLAlchemy()
 DB_NAME = "database.db"
 
-def create_app():
+
+def create_app(database_uri="sqlite:///db.sqlite3"):
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'asalamalaikum'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_uri
     db.init_app(app)
 
     from .views import views
@@ -17,10 +18,10 @@ def create_app():
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
-
+    
     with app.app_context():
         db.create_all()
-
+        
     from .models import User, Lesson
 
     login_manager = LoginManager()
@@ -32,6 +33,7 @@ def create_app():
         return User.query.get(int(id))
 
     return app
+
 
 def create_database(app):
     if not path.exists('website/' + DB_NAME):
