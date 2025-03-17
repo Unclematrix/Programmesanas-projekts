@@ -24,6 +24,12 @@ def create_lesson():
             flash('You have to choose a time!', category='error')
         elif len(date) < 1:
             flash('You have to choose a date!', category='error')
+        elif len(subject) > 200:
+            flash('The name of subject is too long!', category='error')
+        elif len(pupil) > 200:
+            flash('The name of pupil is too long!', category='error')
+        elif len(place) > 200:
+            flash('The name of place is too long!', category='error')
         else:
             new_lesson = Lesson(time=time, date=date, subject=subject, pupil=pupil, place=place, user_id=current_user.id)
             db.session.add(new_lesson)
