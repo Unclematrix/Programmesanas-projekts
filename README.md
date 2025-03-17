@@ -9,3 +9,4 @@ Kā kā izveidot un piekļūt mājaslapai:
 4. Ar VSCode atveriet mapi ar nosaukumu "Flask majaslapa"
 5. Palaidiet kodu "main.py"
 6. Ja izmetas kļūme "ModuleNotFoundError", terminal ierakstiet "pip install *module*", kur *module* ir nepieciešamā moduļa nosaukums.
+7. Ja, palaižot kodu "main.py", neizmetas kļūme, tad mājaslapu var atvērt caur terminal redzamo linku.
