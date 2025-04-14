@@ -52,7 +52,7 @@ def sign_up():
         elif password1 != password2:
             flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
-            flash('Password must be greater at least 7 characters.', category='error')
+            flash('Password must be at least 7 characters.', category='error')
         else:
             new_user = User(email=email, first_name=first_name, password=password1)
             db.session.add(new_user)
